@@ -8,22 +8,24 @@
 </head>
 <body>
     <h1>Create Product</h1>
-    <form method="POST" action="">
+    <form method="post" action="{{route('product.store')}}">
+        @csrf
+        @method('post')
         <table>
             <tr>
-                <td><label for="">Name</label></td>
+                <td><label for="name">Name</label></td>
                 <td><input type="text" name="name" placeholder="Name"></td>
             </tr>
             <tr>
-                <td><label for="">Qty</label></td>
+                <td><label for="qty">Qty</label></td>
                 <td><input type="text" name="qty" placeholder="Qty"></td>
             </tr>
             <tr>
-                <td><label for="">Price</label></td>
+                <td><label for="price">Price</label></td>
                 <td><input type="text" name="price" placeholder="Price"></td>
             </tr>
             <tr>
-                <td><label for="">Description</label>
+                <td><label for="description">Description</label>
                 <td><textarea id="description" name="description" placeholder="Descrription" rows="4"></textarea></td>
             </tr>
         </table>
