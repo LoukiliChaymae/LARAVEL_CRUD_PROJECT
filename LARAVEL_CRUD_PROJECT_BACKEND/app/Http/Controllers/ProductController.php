@@ -8,11 +8,10 @@ use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
+    const HTTP_CREATED = 201;
     public function index(){
-        return view('products.index');
-    }
-    public function create(){
-        return view('products.create');
+        $products = Product::all();
+        return response()->json($products);
     }
     public function store(Request $request){
         $data=$request->validate([
@@ -23,8 +22,6 @@ class ProductController extends Controller
         ]);
         //dd($data);
         $newProduct = Product::create($data);
-        //$newProduct = new Product()
-
-        //return redirect(route('product.index'));
+        return response()->json($newProduct, self::HTTP_CREATED);
     }
 };

@@ -15,10 +15,17 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::resource('products', ProductController::class);
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
 
-Route::get('/product', [ProductController::class,'index'])->name('product.index');
-Route::get('/product/create', [ProductController::class,'create'])->name('product.create');
-Route::post('/product', [ProductController::class,'store'])->name('product.store');
+Route::get('/hello', function () {
+    return 'Hello, World!';
+});
