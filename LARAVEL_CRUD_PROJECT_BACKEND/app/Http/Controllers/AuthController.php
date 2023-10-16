@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginValidationRequest;
+use App\Http\Requests\RegisterValidationRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,12 +20,9 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login','register']]);
     }
 
-    public function login(Request $request):JsonResponse
+    public function login(LoginValidationRequest $request):JsonResponse
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
+
         $credentials = $request->only('email', 'password');
 
         $token = Auth::attempt($credentials);
@@ -46,12 +45,8 @@ class AuthController extends Controller
 
     }
 
-    public function register(Request $request): JsonResponse{
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-        ]);
+    public function register(RegisterValidationRequest $request): JsonResponse{
+
 
         $user = User::create([
             'name' => $request->name,
