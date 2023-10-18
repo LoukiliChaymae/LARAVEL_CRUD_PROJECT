@@ -1,0 +1,24 @@
+<h1>Create Product</h1>
+<form (ngSubmit)="onSubmit()">
+  <table>
+    <tr>
+      <td><label for="name">Name</label></td>
+      <td><input type="text" name="name" [(ngModel)]="productName" placeholder="Name" required></td>
+    </tr>
+    <tr>
+      <td><label for="qty">Qty</label></td>
+      <td><input type="number" name="qty" [(ngModel)]="productQty" placeholder="Qty" required></td>
+    </tr>
+    <tr>
+      <td><label for="price">Price</label></td>
+      <td><input type="number" name="price" [(ngModel)]="productPrice" placeholder="Price" required></td>
+    </tr>
+    <tr>
+      <td><label for="description">Description</label></td>
+      <td><textarea id="description" name="description" [(ngModel)]="productDescription" placeholder="Description" rows="4" required></textarea></td>
+    </tr>
+  </table>
+  <div>
+    <button type="submit" (click)="">Create a new product</button>
+  </div>
+</form>
